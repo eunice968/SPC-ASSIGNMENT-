@@ -1,0 +1,258 @@
+Question 1
+#include <stdio.h>      // Include standard I/O library for file operations
+#include <stdlib.h>     // Include standard library for exit function
+
+int main() {
+    FILE *file_ptr;     // Declare a pointer to a FILE structure
+
+    // Open a file named "example.txt" for writing (mode "w")
+    file_ptr = fopen("example.txt", "w");
+    if (file_ptr == NULL) { // Check if the file opening was successful
+        printf("Error opening file!\n"); // Print error message
+        exit(1);    // Exit the program with an error code
+    }
+
+    // Write "Hello World" to the file
+    fprintf(file_ptr, "Hello World\n");
+
+    // Close the file after writing
+    fclose(file_ptr);
+
+    // Open the file again for reading (mode "r")
+    file_ptr = fopen("example.txt", "r");
+    if (file_ptr == NULL) { // Check if the file opening was successful
+        printf("Error opening file!\n"); // Print error message
+        exit(1);    // Exit the program with an error code
+    }
+
+    char buffer[255];   // Declare a buffer to store the read content
+
+    // Read content from the file into the buffer
+    fgets(buffer, 255, file_ptr);
+
+    // Print the read content
+    printf("Content read from file: %s", buffer);
+
+    // Close the file after reading
+    fclose(file_ptr);
+
+    return 0;   // Return 0 to indicate successful execution
+}
+Question 2
+1. Prompt the user to enter customerID, customerName and unit consumed
+#!/bin/bash
+# Prompt the user to enter customer ID, customer name, and units consumed
+echo "Enter Customer ID:"
+read customerID
+echo "Enter Customer Name:"
+read customerName
+echo "Enter Units Consumed:"
+read unitsConsumed
+
+# Function to calculate electricity bill
+calculate_bill() {
+    if [ "$unitsConsumed" -lt 200 ]; then
+        rate=120
+    elif [ "$unitsConsumed" -ge 200 ] && [ "$unitsConsumed" -lt 400 ]; then
+        rate=150
+    elif [ "$unitsConsumed" -ge 400 ] && [ "$unitsConsumed" -lt 600 ]; then
+        rate=180
+    else
+        rate=200
+    fi
+   # Calculate total bill amount
+    total=$((unitsConsumed * rate))
+  # Display the electricity bill
+    echo "Electricity Bill for Customer $customerID - $customerName"
+    echo "Units Consumed: $unitsConsumed"
+    echo "Rate per Unit: Ksh $rate"
+    echo "Total Bill Amount: Ksh $total"
+}
+# Call the function to calculate and display the bill
+calculate_bill
+2. Use an if.... else statement to check the above given condition and apply the necessary calculations.
+#!/bin/bash
+
+# Prompt the user to enter customer ID, customer name, and units consumed
+echo "Enter Customer ID:"
+read customerID
+echo "Enter Customer Name:"
+read customerName
+echo "Enter Units Consumed:"
+read unitsConsumed
+
+# Function to calculate electricity bill
+calculate_bill() {
+    if [ "$unitsConsumed" -lt 200 ]; then
+        rate=120
+    elif [ "$unitsConsumed" -ge 200 ] && [ "$unitsConsumed" -lt 400 ]; then
+        rate=150
+    elif [ "$unitsConsumed" -ge 400 ] && [ "$unitsConsumed" -lt 600 ]; then
+        rate=180
+    else
+        rate=200
+    fi
+  # Calculate total bill amount
+    total=$((unitsConsumed * rate))
+   # Display the electricity bill
+    echo "Electricity Bill for Customer $customerID - $customerName"
+    echo "Units Consumed: $unitsConsumed"
+    echo "Rate per Unit: Ksh $rate"
+    echo "Total Bill Amount: Ksh $total"
+}
+# Call the function to calculate and display the bill
+calculate_bill
+3. Calculate the total bill.
+#!/bin/bash
+
+# Prompt the user to enter customer ID, customer name, and units consumed
+echo "Enter Customer ID:"
+read customerID
+echo "Enter Customer Name:"
+read customerName
+echo "Enter Units Consumed:"
+read unitsConsumed
+
+# Function to calculate electricity bill
+calculate_bill() {
+    if [ "$unitsConsumed" -lt 200 ]; then
+        rate=120
+    elif [ "$unitsConsumed" -ge 200 ] && [ "$unitsConsumed" -lt 400 ]; then
+        rate=150
+    elif [ "$unitsConsumed" -ge 400 ] && [ "$unitsConsumed" -lt 600 ]; then
+        rate=180
+    else
+        rate=200
+    fi
+
+    # Calculate total bill amount
+    total=$((unitsConsumed * rate))
+
+    # Display the electricity bill
+    echo "Electricity Bill for Customer $customerID - $customerName"
+    echo "Units Consumed: $unitsConsumed"
+    echo "Rate per Unit: Ksh $rate"
+    echo "Total Bill Amount: Ksh $total"
+}
+
+# Call the function to calculate and display the bill
+calculate_bill
+Question 3
+1.prompt the user to enter employee name, hours worked and rate per hour 
+#!/bin/bash
+# Prompt the user to enter employee name, hours worked, and rate per hour
+echo "Enter Employee Name:"
+read employeeName
+echo "Enter Hours Worked:"
+read hoursWorked
+echo "Enter Rate per Hour (in Ksh):"
+read ratePerHour
+
+# Function to calculate basic pay and tax
+calculate_pay_and_tax() {
+    # Calculate basic pay
+    basicPay=$((hoursWorked * ratePerHour))
+  # Calculate tax based on basic pay
+    if [ "$basicPay" -gt 70000 ]; then
+        tax=$((basicPay * 25 / 100))
+    elif [ "$basicPay" -ge 15000 ] && [ "$basicPay" -le 70000 ]; then
+        tax=$((basicPay * 15 / 100))
+    else
+        tax=0
+    fi
+   # Calculate net pay
+    netPay=$((basicPay - tax))
+    # Display the results
+    echo "Employee Name: $employeeName"
+    echo "Hours Worked: $hoursWorked"
+    echo "Rate per Hour: Ksh $ratePerHour"
+    echo "Basic Pay: Ksh $basicPay"
+    echo "Tax: Ksh $tax"
+    echo "Net Pay: Ksh $netPay"
+}
+# Call the function to calculate and display basic pay and tax
+calculate_pay_and_tax
+2. Calculate the basic pay (basic pay= hours worked * rate per hour)
+#!/bin/bash
+# Prompt the user to enter employee name, hours worked, and rate per hour
+echo "Enter Employee Name:"
+read employeeName
+echo "Enter Hours Worked:"
+read hoursWorked
+echo "Enter Rate per Hour (in Ksh):"
+read ratePerHour
+# Function to calculate basic pay
+calculate_basic_pay() {
+    # Calculate basic pay
+    basicPay=$((hoursWorked * ratePerHour))
+   # Display the basic pay
+    echo "Employee Name: $employeeName"
+    echo "Hours Worked: $hoursWorked"
+    echo "Rate per Hour: Ksh $ratePerHour"
+    echo "Basic Pay: Ksh $basicPay"
+}
+# Call the function to calculate and display basic pay
+calculate_basic_pay
+3. Use an if...else statement to calculate tax based on basic pay to meet the stipulated requirements shown in the table above
+#!/bin/bash
+# Prompt the user to enter employee name, hours worked, and rate per hour
+echo "Enter Employee Name:"
+read employeeName
+echo "Enter Hours Worked:"
+read hoursWorked
+echo "Enter Rate per Hour (in Ksh):"
+read ratePerHour
+# Function to calculate basic pay and tax
+calculate_pay_and_tax() {
+    # Calculate basic pay
+    basicPay=$((hoursWorked * ratePerHour))
+   # Calculate tax based on basic pay
+    if [ "$basicPay" -gt 70000 ]; then
+        tax=$((basicPay * 25 / 100))
+    elif [ "$basicPay" -ge 15000 ] && [ "$basicPay" -le 70000 ]; then
+        tax=$((basicPay * 15 / 100))
+    else
+        tax=0
+    fi
+   # Display the results
+    echo "Employee Name: $employeeName"
+    echo "Hours Worked: $hoursWorked"
+    echo "Rate per Hour: Ksh $ratePerHour"
+    echo "Basic Pay: Ksh $basicPay"
+    echo "Tax: Ksh $tax"
+}
+# Call the function to calculate and display basic pay and tax
+calculate_pay_and_tax
+4. Calculate the net pay (net pay=basic pay -tax)
+#!/bin/bash
+# Prompt the user to enter employee name, hours worked, and rate per hour
+echo "Enter Employee Name:"
+read employeeName
+echo "Enter Hours Worked:"
+read hoursWorked
+echo "Enter Rate per Hour (in Ksh):"
+read ratePerHour
+# Function to calculate basic pay and tax
+calculate_pay_and_tax() {
+    # Calculate basic pay
+    basicPay=$((hoursWorked * ratePerHour))
+   # Calculate tax based on basic pay
+    if [ "$basicPay" -gt 70000 ]; then
+        tax=$((basicPay * 25 / 100))
+    elif [ "$basicPay" -ge 15000 ] && [ "$basicPay" -le 70000 ]; then
+        tax=$((basicPay * 15 / 100))
+    else
+        tax=0
+    fi
+ # Calculate net pay
+    netPay=$((basicPay - tax))
+   # Display the results
+    echo "Employee Name: $employeeName"
+    echo "Hours Worked: $hoursWorked"
+    echo "Rate per Hour: Ksh $ratePerHour"
+    echo "Basic Pay: Ksh $basicPay"
+    echo "Tax: Ksh $tax"
+    echo "Net Pay: Ksh $netPay"
+}
+# Call the function to calculate and display basic pay, tax, and net pay
+calculate_pay_and_tax
